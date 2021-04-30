@@ -1,5 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { setAlert } from '../../actions/alertAction';
 
 class Register extends React.Component {
 	state = {
@@ -14,7 +17,7 @@ class Register extends React.Component {
 	onSubmit = async (e) => {
 		e.preventDefault();
 		if (this.state.password !== this.state.password2) {
-			console.log('Passwords do not match');
+			this.props.setAlert('Passwords do not match', 'danger');
 		} else {
 			console.log('SUCCESS');
 		}
@@ -83,4 +86,8 @@ class Register extends React.Component {
 	}
 }
 
-export default Register;
+Register.propTypes = {
+	setAlert: PropTypes.func.isRequired,
+};
+
+export default connect(null, { setAlert })(Register);
