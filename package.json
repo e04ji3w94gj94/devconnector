@@ -6,7 +6,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon --watch backend --exec node --experimental-modules server.js"
+    "server": "nodemon --watch backend --exec node --experimental-modules server.js",
+    "client":"npm start --prefix client",
+    "dev":"concurrently \"npm run server\" \"npm run client\""
   },
   "author": "faifai",
   "license": "MIT",
