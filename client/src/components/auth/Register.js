@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { setAlert } from '../../actions/alertAction';
+import { register } from '../../actions/authAction';
 
 class Register extends React.Component {
 	state = {
@@ -15,14 +16,21 @@ class Register extends React.Component {
 	onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
 	onSubmit = async (e) => {
+		const { name, email, password } = this.state;
+
 		e.preventDefault();
+
 		if (this.state.password !== this.state.password2) {
 			this.props.setAlert('Passwords do not match', 'danger');
 		} else {
-			console.log('SUCCESS');
+			this.props.register({ name, email, password });
 		}
 	};
 	render() {
+		if (this.props.isAuthenticated) {
+			return <Redirect to='/dashboard' />;
+		}
+
 		const { name, email, password, password2 } = this.state;
 
 		return (
@@ -39,7 +47,6 @@ class Register extends React.Component {
 							name='name'
 							value={name}
 							onChange={(e) => this.onChange(e)}
-							required
 						/>
 					</div>
 					<div className='form-group'>
@@ -49,7 +56,6 @@ class Register extends React.Component {
 							name='email'
 							value={email}
 							onChange={(e) => this.onChange(e)}
-							required
 						/>
 						<small className='form-text'>
 							This site uses Gravatar so if you want a profile image, use a
@@ -63,7 +69,6 @@ class Register extends React.Component {
 							name='password'
 							value={password}
 							onChange={(e) => this.onChange(e)}
-							minLength='6'
 						/>
 					</div>
 					<div className='form-group'>
@@ -73,7 +78,6 @@ class Register extends React.Component {
 							name='password2'
 							value={password2}
 							onChange={(e) => this.onChange(e)}
-							minLength='6'
 						/>
 					</div>
 					<input type='submit' className='btn btn-primary' value='Register' />
@@ -88,6 +92,12 @@ class Register extends React.Component {
 
 Register.propTypes = {
 	setAlert: PropTypes.func.isRequired,
+	register: PropTypes.func.isRequired,
+	isAuthenticated: PropTypes.bool,
 };
 
-export default connect(null, { setAlert })(Register);
+const mapStateToProps = (state) => ({
+	isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { setAlert, register })(Register);
