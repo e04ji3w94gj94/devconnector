@@ -5,7 +5,7 @@ import { check, validationResult } from 'express-validator';
 import auth from '../../middleware/authMiddleware.js';
 import Profile from '../../models/profileModel.js';
 import User from '../../models/userModel.js';
-import Post from '../../models/PostModel';
+import Post from '../../models/postModel.js';
 
 const profileRouter = express.Router();
 

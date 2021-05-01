@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addEducation } from '../../actions/profileAction';
@@ -132,9 +133,9 @@ class AddEducation extends React.Component {
 					<button type='submit' className='btn btn-primary my-1'>
 						Submit
 					</button>
-					<a className='btn btn-light my-1' href='dashboard.html'>
+					<Link className='btn btn-light my-1' to='/dashboard'>
 						Go Back
-					</a>
+					</Link>
 				</form>
 			</>
 		);
@@ -145,4 +146,4 @@ AddEducation.propTypes = {
 	addEducation: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addEducation })(AddEducation);
+export default connect(null, { addEducation })(withRouter(AddEducation));
