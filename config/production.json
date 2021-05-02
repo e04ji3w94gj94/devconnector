@@ -1,0 +1,6 @@
+{
+    "mongoURI":"mongodb+srv://faifai:12345@devconnector.sorol.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "jwtSecret":"mysecrettoken",
+    "githubClientId":"3d568891899338e08a3f",
+    "githubSecret":"ceb5e42d252fc4b4b39587597a4e51debadc35b8"
+}

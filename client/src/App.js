@@ -14,6 +14,8 @@ import AddExperience from './components/profile-forms/AddExperience';
 import AddEducation from './components/profile-forms/AddEducation';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
+import Posts from './components/posts/Posts';
+import Post from './components/post/Post';
 import store from './store';
 import { loadUser } from './actions/authAction';
 import setAuthToken from './utils/setAuthToken';
@@ -63,6 +65,8 @@ class App extends React.Component {
 									path='/add-education'
 									component={AddEducation}
 								/>
+								<PrivateRoute exact path='/posts' component={Posts} />
+								<PrivateRoute exact path='/posts/:id' component={Post} />
 							</Switch>
 						</section>
 					</>
