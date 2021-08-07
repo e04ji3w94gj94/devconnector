@@ -1,5 +1,5 @@
 node_modules/
 package-lock.json
-config/default.json
+backend/config/default.json
 .DS_Store
-config/production.json
+backend/config/production.json
